@@ -23,9 +23,3 @@ Inside the python console:
 - (venv) C:\Users\Asus-PC\Downloads\todoproject>python manage.py migrate
 - (venv) C:\Users\Asus-PC\Downloads\todoproject>python manage.py createsuperuser 
 - (venv) C:\Users\Asus-PC\Downloads\todoproject>python manage.py runserver
-
-## Login of the super user created
-### User: 
-admin
-### Password: 
-admin123
