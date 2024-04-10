@@ -19,7 +19,14 @@ Inside the python console:
     5.0.3
 >>> exit()
 
-- (venv) C:\Users\Asus-PC\Downloads\todoproject>django-admin startproject todoapp .
-- (venv) C:\Users\Asus-PC\Downloads\todoproject>python manage.py migrate
-- (venv) C:\Users\Asus-PC\Downloads\todoproject>python manage.py createsuperuser 
-- (venv) C:\Users\Asus-PC\Downloads\todoproject>python manage.py runserver
+- (venv) \todoproject>django-admin startproject todoapp .
+- (venv) \todoproject>python manage.py migrate
+- (venv) \todoproject>python manage.py createsuperuser 
+- (venv) \todoproject>python manage.py runserver
+
+# Create a new virtual environment and install the project dependencies.
+cd nombre-repositorio
+pipenv install
+
+# Install the dependencies from requirements.txt
+pip install -r requirements.txt
