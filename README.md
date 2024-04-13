@@ -30,3 +30,9 @@ pipenv install
 
 # Install the dependencies from requirements.txt
 pip install -r requirements.txt
+
+# Applying linters in the project
+we use the "flake8" linter to apply pep 8 guidelines in our project 
+
+we use the next commands for install the flake 8  
+-pip install flake8
