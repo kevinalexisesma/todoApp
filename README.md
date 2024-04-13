@@ -34,5 +34,13 @@ pip install -r requirements.txt
 # Applying linters in the project
 we use the "flake8" linter to apply pep 8 guidelines in our project 
 
-we use the next commands for install the flake 8  
--pip install flake8
+We use the "flake8" linter to apply pep 8 guidelines in our project.
+
+To find out if a file meets the guidelines, we execute the command:
+- flake8 <file name>
+
+We will use the file practiceFlake8.py to know what the flake8 command returns.
+
+- Content of the practicalFlake8.py
+- print('I'm fine')
+- print('I'm bad')
