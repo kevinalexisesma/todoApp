@@ -18,27 +18,15 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from tasks.views import TaskViewSet
-<<<<<<< Updated upstream
-from rest_framework.authtoken.views import obtain_auth_token
-=======
 from profiles.views import ProfileCreationView
 from rest_framework_simplejwt.views import (
      TokenObtainPairView,
     TokenRefreshView,)
 from profiles.views import CustomTokenObtainPairView
->>>>>>> Stashed changes
 
 
 router = routers.DefaultRouter()
 router.register(r'tasks', TaskViewSet, basename='tasks')
-<<<<<<< Updated upstream
-
-urlpatterns = [
-    path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('admin/', admin.site.urls)
-=======
 
 
 
@@ -50,6 +38,5 @@ urlpatterns = [
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/', include(router.urls)),
     
->>>>>>> Stashed changes
 ]
 
