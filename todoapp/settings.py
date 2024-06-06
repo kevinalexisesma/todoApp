@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from rest_framework.pagination import PageNumberPagination
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+<<<<<<< Updated upstream
     'rest_framework.authtoken',
+=======
+    'rest_framework_simplejwt',
+>>>>>>> Stashed changes
     'django_filters',
     'tasks.apps.TasksConfig',
     'profiles.apps.ProfilesConfig'
@@ -128,6 +135,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
+<<<<<<< Updated upstream
 # Use Django's standard "django.contrib.auth' permissions,
 # or allow read-only access for unauthenticated users.
 'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -141,3 +149,28 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'profiles.Profile'
+=======
+
+'DEFAULT_AUTHENTICATION_CLASSES': [
+       
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    ' PAGE_SIZE': 5
+}
+
+AUTH_USER_MODEL='profiles.Profile'
+
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+   "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": False,
+}
+>>>>>>> Stashed changes
