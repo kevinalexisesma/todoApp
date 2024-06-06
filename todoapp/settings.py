@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
     'tasks.apps.TasksConfig',
-    'users.apps.UsersConfig'
+    'profiles.apps.ProfilesConfig'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +126,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+# Use Django's standard "django.contrib.auth' permissions,
+# or allow read-only access for unauthenticated users.
+'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+' PAGE_SIZE': 2
+}
+
+AUTH_USER_MODEL = 'profiles.Profile'
