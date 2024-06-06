@@ -41,11 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-<<<<<<< Updated upstream
-    'rest_framework.authtoken',
-=======
     'rest_framework_simplejwt',
->>>>>>> Stashed changes
     'django_filters',
     'tasks.apps.TasksConfig',
     'profiles.apps.ProfilesConfig'
@@ -135,21 +131,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-<<<<<<< Updated upstream
-# Use Django's standard "django.contrib.auth' permissions,
-# or allow read-only access for unauthenticated users.
-'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-' PAGE_SIZE': 2
-}
-
-AUTH_USER_MODEL = 'profiles.Profile'
-=======
 
 'DEFAULT_AUTHENTICATION_CLASSES': [
        
@@ -173,4 +154,3 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": False,
 }
->>>>>>> Stashed changes
