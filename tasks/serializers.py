@@ -11,8 +11,16 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
         validated_data['user']=self.context['request'].user
         return super(TaskSerializer,self).create(validated_data)  
     
-    
     def destroy(self, validated_data):
-        validated_data['user']=self.context['request'].user
-        print(validated_data)
-        return super(TaskSerializer,self).destroy(validated_data)
+        instance = Task.objects.get(pk=validated_data.id)
+        instance.delete()
+        return validated_data
+    
+    def update(self, validated_data):
+        instance = Task.objects.get(pk=self.get_object().id)
+        id=self.get_object().id
+        for field, value in validated_data.items():
+            setattr(instance, field, value)
+        instance.description = validated_data["description"]
+        instance.save()
+        return validated_data

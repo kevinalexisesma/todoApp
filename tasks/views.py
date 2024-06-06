@@ -17,7 +17,6 @@ class TaskViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return self.request.user.tasks.all()
 
-
     def create(self, request, *args, **kwargs):
         data=request.data
         data["user"]=self.get_serializer(data=data)
@@ -28,12 +27,12 @@ class TaskViewSet(viewsets.ModelViewSet):
     
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-
     def destroy(self, request, *args, **kwargs):
-        data=self.get_object()["name"]
-        print (data)
-        if data["id"] == self.get_serializer(data=data):
-            self.serializer_class.destroy()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
+        data=self.get_object()
+        self.serializer_class.destroy(self,validated_data=data)
+        return Response(status=status.HTTP_200_OK)
+    
+    def update(self, request, *args, **kwargs):
+        data=request.data
+        self.serializer_class.update(self,validated_data=data)
+        return Response(status=status.HTTP_200_OK)
