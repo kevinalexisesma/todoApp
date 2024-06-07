@@ -12,10 +12,24 @@ class TaskViewSet(viewsets.ModelViewSet):
     
     serializer_class=TaskSerializer 
     filter_backends=[OrderingFilter]
-    orderingFilter=['priority'] 
-
-    def get_queryset(self):
-        return self.request.user.tasks.all()
+    ordering_fields=['name']
+    ordering = ['priority','name']
+    
+    
+        
+       
+    
+    
+    def get_queryset(self): 
+         
+        queryset = self.request.user.tasks.all()
+        completed = self.request.query_params.get('completed', None)
+        
+        if completed is not None:
+            completed = completed.lower() in ['true', '1', 't', 'y', 'yes']
+            queryset = queryset.filter(completed=completed)
+        
+        return queryset
 
     def create(self, request, *args, **kwargs):
         data=request.data
@@ -30,7 +44,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         data=self.get_object()
         self.serializer_class.destroy(self,validated_data=data)
-        return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
     def update(self, request, *args, **kwargs):
         data=request.data
