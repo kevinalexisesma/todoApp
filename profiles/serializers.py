@@ -10,23 +10,23 @@ class ProfileCrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data["password"] = serializers.CharField(write_only=True, required=True, validators=[
                 RegexValidator(
-                    regex=r'^(?=.*[A-Z])',  # Al menos una letra mayúscula
+                    regex=r'^(?=.*[A-Z])',  # At least one capital letter
                     message=('The password must contain at least one uppercase letter.')
                 ),
                 RegexValidator(
-                    regex=r'^(?=.*[a-z])',  # Al menos una letra minúscula
+                    regex=r'^(?=.*[a-z])',  # At least one lowercase letter
                     message=('The password must contain at least one lowercase letter.')
                 ),
                 RegexValidator(
-                    regex=r'^(?=.*\d)',  # Al menos un dígito
+                    regex=r'^(?=.*\d)',  # At least one digit
                     message=('The password must contain at least one digit.')
                 ),
                 RegexValidator(
-                    regex=r'^(?=.[@$!%?&])',  # Al menos un carácter especial
+                    regex=r'^(?=.[@$!%?&])',  # At least one special character
                     message=('The password must contain at least one special character (@$!%*?&).')
                 ),
                 RegexValidator(
-                    regex=r'^.{8,}$',  # Al menos 8 caracteres de longitud
+                    regex=r'^.{8,}$',  # At least 8 characters long
                     message=('The password must be at least 8 characters long.')
                 )
             ])
