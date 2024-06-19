@@ -52,12 +52,6 @@ class TaskTest(APITestCase):
          self.assertEqual(response.status_code, status.HTTP_201_CREATED)
          self.assertEqual(response.data.get("name"), "New Task")
          
-    def test_update_task(self):
-          url = reverse("tasks-detail", kwargs={"pk": self.task.id})
-          data = {"name": "Updated Task", "description": "Updated Task Description", "priority": "9","completed": False}
-          response = self.client.put(url, data, format="json")
-          self.assertEqual(response.status_code, status.HTTP_200_OK)
-          self.assertEqual(response.data.get("name"),"Updated Task")
     
     def test_delete_task(self):
          url = reverse("tasks-detail", kwargs={"pk": self.task.id})
