@@ -19,10 +19,9 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
         return validated_data
     
     def update(self, validated_data):
-        instance = Task.objects.get(pk=self.get_object().id)
+        instance = self.get_object()
         id=self.get_object().id
         for field, value in validated_data.items():
             setattr(instance, field, value)
-        instance.description = validated_data["description"]
         instance.save()
         return validated_data
