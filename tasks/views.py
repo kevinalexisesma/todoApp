@@ -1,15 +1,19 @@
-from django.shortcuts import render
+
 from .serializers import TaskSerializer
 from rest_framework import viewsets
 from .models import Task
 from rest_framework.filters import OrderingFilter
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.exceptions import PermissionDenied, NotFound
 
 # Create your views here.
 
 class TaskViewSet(viewsets.ModelViewSet):
     
+    queryset=Task.objects.all()
+    authentication_classes=[JWTAuthentication]
     serializer_class=TaskSerializer 
     filter_backends=[OrderingFilter]
     ordering_fields=['name']

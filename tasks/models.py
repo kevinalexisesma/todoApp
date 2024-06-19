@@ -9,14 +9,14 @@ class Task(models.Model):
     priority=models.PositiveSmallIntegerField(default=0)   
     completed=models.BooleanField(default=False)
     user=models.ForeignKey( 
-       settings.AUTH_USER_MODEL,
+        settings.AUTH_USER_MODEL,
        on_delete=models.RESTRICT,
        limit_choices_to={'is_superuser':False},
-       related_name='task',
+       related_name='tasks',
        null=True
     )
+    completed=models.BooleanField(default=False)
    
     def __str__(self) -> str:
         texto= "{0} ({1})"
-        
         return texto.format(self.name, self.description )
