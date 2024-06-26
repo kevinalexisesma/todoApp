@@ -18,15 +18,25 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 from tasks.views import TaskViewSet
-from rest_framework.authtoken.views import obtain_auth_token
+from profiles.views import ProfileCreationView
+from rest_framework_simplejwt.views import (
+     TokenObtainPairView,
+    TokenRefreshView,)
+from profiles.views import CustomTokenObtainPairView
 
 
 router = routers.DefaultRouter()
 router.register(r'tasks', TaskViewSet, basename='tasks')
 
+
+
 urlpatterns = [
+    
+    path('admin/', admin.site.urls),
+    #path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('admin/', admin.site.urls)
+    
 ]
+
