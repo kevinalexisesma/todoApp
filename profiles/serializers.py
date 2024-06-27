@@ -6,45 +6,42 @@ from django.core.validators import RegexValidator
 
 
 class ProfileCreationSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, validators=[
+        RegexValidator(
+            regex=r'^(?=.*[A-Z])',  # Al menos una letra mayúscula
+            message=('La contraseña debe contener al menos una letra mayúscula.')
+        ),
+        RegexValidator(
+            regex=r'^(?=.*[a-z])',  # Al menos una letra minúscula
+            message=('La contraseña debe contener al menos una letra minúscula.')
+        ),
+        RegexValidator(
+            regex=r'^(?=.*\d)',  # Al menos un dígito
+            message=('La contraseña debe contener al menos un dígito.')
+        ),
+        RegexValidator(
+            regex=r'^(?=.*[@$!%*?&])',  # Al menos un carácter especial
+            message=('La contraseña debe contener al menos un carácter especial (@$!%*?&).')
+        ),
+        RegexValidator(
+            regex=r'^.{8,}$',  # Al menos 8 caracteres de longitud
+            message=('La contraseña debe tener al menos 8 caracteres de longitud.')
+        )
+    ])
+
     class Meta:
         model = Profile
         fields = ['username', 'password', 'email', 'bio']
-    
-    def create(self, validated_data) :
-        
-        return super(ProfileCreationSerializer, self). create(validated_data)
-    
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    
-     def validate(self, attrs):
-        data = super().validate(attrs)
 
+    def create(self, validated_data):
+        validated_data['password'] = make_password(validated_data.get('password'))
+        return super(ProfileCreationSerializer, self).create(validated_data)
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
         # Añadir claims personalizados
         data['username'] = self.user.username
         return data
-      
-    def create(self, validated_data):
-        validated_data["password"] = serializers.CharField(write_only=True, required=True, validators=[
-                RegexValidator(
-                    regex=r'^(?=.*[A-Z])',  # At least one capital letter
-                    message=('The password must contain at least one uppercase letter.')
-                ),
-                RegexValidator(
-                    regex=r'^(?=.*[a-z])',  # At least one lowercase letter
-                    message=('The password must contain at least one lowercase letter.')
-                ),
-                RegexValidator(
-                    regex=r'^(?=.*\d)',  # At least one digit
-                    message=('The password must contain at least one digit.')
-                ),
-                RegexValidator(
-                    regex=r'^(?=.[@$!%?&])',  # At least one special character
-                    message=('The password must contain at least one special character (@$!%*?&).')
-                ),
-                RegexValidator(
-                    regex=r'^.{8,}$',  # At least 8 characters long
-                    message=('The password must be at least 8 characters long.')
-                )
-            ])
-        validated_data['password'] = make_password(validated_data.get ( 'password'))
-        return super(ProfileCrationSerializer, self).create(validated_data)
