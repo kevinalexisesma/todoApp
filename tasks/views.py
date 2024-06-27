@@ -16,13 +16,8 @@ class TaskViewSet(viewsets.ModelViewSet):
     authentication_classes=[JWTAuthentication]
     serializer_class=TaskSerializer 
     filter_backends=[OrderingFilter]
-    ordering_fields=['name']
-    ordering = ['priority','name']
-    
-    
-        
-       
-    
+    ordering = ['-priority']
+   
     
     def get_queryset(self): 
          

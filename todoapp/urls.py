@@ -26,7 +26,10 @@ from profiles.views import CustomTokenObtainPairView
 
 
 router = routers.DefaultRouter()
+routerP=routers.DefaultRouter()
+
 router.register(r'tasks', TaskViewSet, basename='tasks')
+
 
 
 
@@ -36,6 +39,7 @@ urlpatterns = [
     #path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path("api/profiles/", ProfileCreationView.as_view(), name="profiles"),
     path('api/', include(router.urls)),
     
 ]
