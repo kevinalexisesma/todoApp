@@ -16,7 +16,7 @@ class ProfileCreationSerializer(serializers.ModelSerializer):
     
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     
-     def validate(self, attrs):
+    def validate(self, attrs):
         data = super().validate(attrs)
 
         # Añadir claims personalizados
