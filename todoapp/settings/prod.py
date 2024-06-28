@@ -1,3 +1,4 @@
+import dj_database_url
 from .base import *
 from decouple import config
 
@@ -12,7 +13,11 @@ DEBUG = config("DEBUG")
 
 ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS").split()
 
+CORS_ALLOWED_ORIGINS = [
+    config("DB_PORTFRONT")
+]
 
+CORS_ALLOW_CREDENTIALS = True
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
