@@ -14,6 +14,7 @@ class ProfileCreationSerializer(serializers.ModelSerializer):
         fields = ['first_name', 'last_name','username', 'password', 'email', 'bio']
 
     def create(self, validated_data) : 
+        validated_data['password'] = make_password(validated_data.get('password'))
         return super(ProfileCreationSerializer, self). create(validated_data)
     
     password = serializers.CharField(
@@ -36,6 +37,4 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             return data
         
     def create(self, validated_data):
-            validated_data['password'] = make_password(validated_data.get ( 'password'))
-            
             return super(ProfileCreationSerializer, self).create(validated_data)
