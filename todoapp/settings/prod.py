@@ -12,9 +12,7 @@ DEBUG = config("DEBUG")
 
 ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS").split()
 
-CORS_ALLOWED_ORIGINS = [
-    config("DB_PORTFRONT")
-]
+CORS_ALLOWED_ORIGINS = True
 
 CORS_ALLOW_CREDENTIALS = True
 # Database
