@@ -10,11 +10,8 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG")
 
-ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS").split()
+ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS")
 
-CORS_ALLOW_ALL_ORIGINS = True
-
-CORS_ALLOW_CREDENTIALS = True
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
