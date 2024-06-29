@@ -10,7 +10,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG")
 
-ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS").split()
+ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS")
 
 CORS_ALLOW_ALL_ORIGINS = True
 
